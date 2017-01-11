@@ -1,0 +1,29 @@
+{
+  "name": "mwd",
+  "version": "0.1.0",
+  "description": "MEAN Web Development",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dpitic/mean-wd.git"
+  },
+  "keywords": [
+    "MEAN",
+    "Node.js",
+    "Node",
+    "Express",
+    "Grunt"
+  ],
+  "author": "dpitic",
+  "license": "ISC",
+  "dependencies": {
+    "express": "latest",
+    "grunt": "latest"
+  },
+  "bugs": {
+    "url": "https://github.com/dpitic/mean-wd/issues"
+  },
+  "homepage": "https://github.com/dpitic/mean-wd#readme"
+}

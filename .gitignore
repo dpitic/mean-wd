@@ -3,6 +3,9 @@ logs
 *.log
 npm-debug.log*
 
+# JetBrains IDE configuration directory
+.idea/
+
 # Runtime data
 pids
 *.pid
