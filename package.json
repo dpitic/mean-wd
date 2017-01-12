@@ -19,6 +19,7 @@
   "author": "dpitic",
   "license": "ISC",
   "dependencies": {
+    "connect": "^3.5.0",
     "express": "latest",
     "grunt": "latest"
   },
