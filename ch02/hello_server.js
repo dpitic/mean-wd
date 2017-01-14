@@ -1,6 +1,7 @@
 /**
  * Created by dpitic on 12/01/17.
- * Basic 'hello world' web server.
+ * Basic 'hello world' web server implemented using the native Node.js http
+ * module.
  */
 
 const http = require('http');
