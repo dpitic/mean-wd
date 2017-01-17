@@ -10,5 +10,9 @@ const mongoose = require('mongoose');
 // Connect to MongoDB database specified in ./config/eng/
 module.exports = function () {
     const db = mongoose.connect(config.db);
+    
+    // Register the User model
+    require('../app/models/user.server.model');
+    
     return db;
 };

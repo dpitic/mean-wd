@@ -50,6 +50,9 @@ module.exports = function () {
     // then it calls the controller's render() method.
     require('../app/routes/index.server.routes')(app);
 
+    // Call the routing file
+    require('../app/routes/users.server.routes')(app);
+
     /* Use the native Express middleware to serve static files from the
      * specified location folder (./public). The express.static() middleware
      * must be placed below the call for the routing file, otherwise Express
