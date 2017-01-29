@@ -7,7 +7,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-// Define Mongoose schema
+// Define Mongoose schema object for the User schema
 const UserSchema = new Schema({
     firstName: String,
     lastName: String,
@@ -17,4 +17,5 @@ const UserSchema = new Schema({
 });
 
 // Define model; must be registered in config/mongoose.js before it can be used
+// This model definition uses the User schema object defined above.
 mongoose.model('User', UserSchema);

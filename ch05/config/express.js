@@ -33,7 +33,8 @@ module.exports = function () {
 
     /* Use Express session middleware. This adds a session object to all request
      * objects in the application. This session object enables you to get or
-     * set any property you want to use in the current session. */
+     * set any property you want to use in the current session.
+     */
     app.use(session({
         saveUninitialized: true,
         resave: true,
@@ -50,7 +51,7 @@ module.exports = function () {
     // then it calls the controller's render() method.
     require('../app/routes/index.server.routes')(app);
 
-    // Call the routing file
+    // Call the routing file to access the Users functionality
     require('../app/routes/users.server.routes')(app);
 
     /* Use the native Express middleware to serve static files from the
@@ -58,7 +59,8 @@ module.exports = function () {
      * must be placed below the call for the routing file, otherwise Express
      * would try to look for HTTP request paths int he static files folder. This
      * would make the response a lot slower as it would have to wait for file
-     * IO operation. */
+     * IO operation.
+     */
     app.use(express.static('./public'));
 
     return app;

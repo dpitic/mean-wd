@@ -15,6 +15,9 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 const configureMongoose = require('./config/mongoose');
 const configureExpress = require('./config/express');
 
+// Load the Mongoose configuration before any other configuration to ensure the
+// models are usable by any other modules loaded subsequently without each
+// module having to load the models individually.
 const db = configureMongoose();
 const app = configureExpress();
 app.listen(3000);
