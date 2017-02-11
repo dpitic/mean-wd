@@ -11,10 +11,53 @@ const Schema = mongoose.Schema;
 const UserSchema = new Schema({
     firstName: String,
     lastName: String,
-    email: String,
-    username: String,
-    password: String        // clear text!
+    email: {
+        type: String,
+        index: true             // Secondary index on email
+    },
+    username: {                 // Predefined modifier to manipulate data before
+        type: String,           // saving document.
+        trim: true,             // Clear leading and trailing whitespace
+        unique: true            // Create unique index for username
+    },
+    password: String,           // clear text!
+    created: {                  // Added document creation date
+        type: Date,
+        default: Date.now       // Default document creation date
+    },
+    website: {                  // Custom getter modifier to handle data
+        type: String,           // manipulation before returning the document.
+        get: function (url) {   // Ensure website field begins with http:// or
+            if (!url) {         // https:// when the document is returned.
+                return url;
+            } else {
+                if (url.indexOf('http://') !== 0 &&
+                    url.indexOf('https://') !== 0) {
+                    url = 'http://' + url;
+                }
+
+                return url;
+            }
+        }
+    }
 });
+
+// Add a full name virtual attribute, with getter & setter,  which represents
+// the concatenation of the user's first and last names.
+UserSchema.virtual('fullName')
+    .get(function () {
+        return this.firstName + ' ' + this.lastName;
+    })
+    .set(function (fullName) {
+        const splitName = fullName.split(' ');
+        this.firstName = splitName[0] || '';
+        this.lastName = splitName[1] || '';
+});
+
+// Configure schema to force Mongoose to include getters when converting the
+// MongoDB document to JSON representation to allow output of documents using
+// res.json()
+UserSchema.set('toJSON', { getters: true, virtuals: true });
 
 // Define model; must be registered in config/mongoose.js before it can be used
 // This model definition uses the User schema object defined above.
