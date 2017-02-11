@@ -28,7 +28,7 @@ const UserSchema = new Schema({
             function (password) {
                 return password.length >= 6;
             },
-            'Password should be longer'
+            'Password should be longer'     // error message
         ]
     },
     created: {                  // Added document creation date
@@ -85,6 +85,12 @@ UserSchema.statics.findOneByUsername = function (username, callback) {
 UserSchema.methods.authenticate = function (password) {
     return this.password === password;
 };
+
+// Mongoose post middleware used to intercept save function and log output
+// after the document has been saved.
+UserSchema.post('save', function (next) {
+    console.log('The user "' + this.username + '" details were saved.');
+});
 
 // Define model; must be registered in config/mongoose.js before it can be used
 // This model definition uses the User schema object defined above.
