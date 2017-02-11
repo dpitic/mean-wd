@@ -59,6 +59,19 @@ UserSchema.virtual('fullName')
 // res.json()
 UserSchema.set('toJSON', { getters: true, virtuals: true });
 
+/*
+ * Define custom model static method to perform model-level operation to find
+ * a user document by searching on username.
+ */
+UserSchema.statics.findOneByUsername = function (username, callback) {
+    this.findOne({ username: new RegExp(username, 'i') }, callback);
+};
+
+// Define a custom instance method to validate a user's password.
+UserSchema.methods.authenticate = function (password) {
+    return this.password === password;
+};
+
 // Define model; must be registered in config/mongoose.js before it can be used
 // This model definition uses the User schema object defined above.
 mongoose.model('User', UserSchema);
