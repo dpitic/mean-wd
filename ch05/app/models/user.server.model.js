@@ -13,17 +13,31 @@ const UserSchema = new Schema({
     lastName: String,
     email: {
         type: String,
-        index: true             // Secondary index on email
+        index: true,            // Secondary index on email
+        match: /.+@.+\..+/      // Predefined validator for regex
     },
     username: {                 // Predefined modifier to manipulate data before
         type: String,           // saving document.
         trim: true,             // Clear leading and trailing whitespace
-        unique: true            // Create unique index for username
+        unique: true,           // Create unique index for username
+        required: true          // Predefined validator for field existence
     },
-    password: String,           // clear text!
+    password: {
+        type: String,           // clear text!
+        validate: [             // Custom validator for password length
+            function (password) {
+                return password.length >= 6;
+            },
+            'Password should be longer'
+        ]
+    },
     created: {                  // Added document creation date
         type: Date,
         default: Date.now       // Default document creation date
+    },
+    role: {                     // enum predefined validator for role type
+        type: String,
+        enum: [ 'Admin', 'Owner', 'User' ]
     },
     website: {                  // Custom getter modifier to handle data
         type: String,           // manipulation before returning the document.
