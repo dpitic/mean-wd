@@ -10,6 +10,7 @@ const compress = require('compression');    // response compression
 const bodyParser = require('body-parser');  // request data handling middleware
 const methodOverride = require('method-override');  // DELETE & PUT legacy
 const session = require('express-session'); // Express session module
+const flash = require('connect-flash');     // Temporary messages module
 const passport = require('passport');   // Passport authentication middleware
 
 module.exports = function () {
@@ -46,6 +47,9 @@ module.exports = function () {
     // the Express template engine ejs.
     app.set('views', './app/views');
     app.set('view engine', 'ejs');
+
+    // Register connect-flash module to handle temporary messages
+    app.use(flash());
 
     // Register Passport authentication module middleware in Express application
     app.use(passport.initialize());

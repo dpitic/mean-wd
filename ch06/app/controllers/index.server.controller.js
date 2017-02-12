@@ -25,6 +25,7 @@ exports.render = function (req, res) {
     // EJS renders the HTML on the server. MEAN applications mostly render
     // HTML on the client side using Angular.
     res.render('index', {       // name of EJS template file
-        title: 'Hello World'    // object containing template variables.
+        title: 'Hello World',   // object containing template variables.
+        userFullName: req.user ? req.user.fullName : ''
     });
 };

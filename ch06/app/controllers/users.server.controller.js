@@ -7,6 +7,7 @@
 
 // Get the Mongoose User model
 const User = require('mongoose').model('User');
+const passport = require('passport');
 
 /*
  * Create new User. This code defines a new controller method called create()
@@ -96,4 +97,122 @@ exports.delete = function (req, res, next) {
             res.status(200).json(req.user);
         }
     });
+};
+
+/*
+ * Error handling controller method. Returns a unified error from a Mongoose
+ * error object. There are two possible errors: a MongoDB indexing error handled
+ * using the error code, and a Mongoose validation error handled using the
+ * err.errors object.
+ */
+function getErrorMessage(err) {
+    let message = '';     // Error message variable
+
+    // If an internal MongoDB error occurs, get the error message
+    if (err.code) {
+        switch (err.code) {
+            // If a unique index error occurs, set the message error
+            case 11000:
+            case 11001:
+                message = 'Username already exists';
+                break;
+            // If a general error occurs, set the message error
+            default:
+                message = 'Something went wrong';
+        }
+    } else {
+        // Grab the first error message from a list of possible errors
+        for (const errName in err.errors) {
+            if (err.errors[errName].message) {
+                message = err.errors[errName].message;
+            }
+        }
+    }
+
+    // Return the message error
+    return message;
+};
+
+/*
+ * Controller method used to render the signin page.
+ */
+exports.renderSignin = function (req, res, next) {
+    if (!req.user) {
+        res.render('signin', {
+            title: 'Sign-in Form',
+            messages: req.flash('error') || req.flash('info')
+        });
+    } else {
+        return res.redirect('/');
+    }
+};
+
+/*
+ * Controller method used to render the signup page.
+ */
+exports.renderSignup = function (req, res, next) {
+    // If user is not connected, render the signup page, otherwise redirect user
+    // back to main application page.
+    if (!req.user) {
+        res.render('signup', {
+            title: 'Sign-up Form',
+            messages: req.flash('error')
+        });
+    } else {
+        return res.redirect('/');
+    }
+};
+
+/*
+ * Controller method used to create regular users.
+ */
+exports.signup = function (req, res, next) {
+    // If user is not connected, create and login a new user, otherwise redirect
+    // user back to the main application page.
+    if (!req.user) {
+        // Create a new User model instance
+        const user = new User(req.body);
+        // Set the user provider property to local authentication strategy
+        user.provider = 'local';
+
+        // Try saving the new user document
+        user.save((err) => {
+            // If an error occurs, use flash messages to report the error
+            if (err) {
+                // Use the error handing method to get error messages
+                const message = getErrorMessage(err);
+
+                // Set the flash message
+                req.flash('error', message);
+
+                // Redirect the user back to the signup page
+                return res.redirect('/signup');
+            }
+
+            // If the user was created successfully, use the Passport login
+            // method to login and create the user session.
+            req.login(user, (err) => {
+                // If a login error occurs, move to the next middleware
+                if (err) {
+                    return next(err);
+                }
+
+                // Redirect user back to the main application page
+                return res.redirect('/');
+            });
+        });
+    } else {
+        return res.redirect('/');
+    }
+};
+
+/*
+ * Controller method for signing out
+ */
+exports.signout = function (req, res) {
+    // Use the Passport logout() method to log out
+    req.logout();       // Invalidate the authenticated session
+
+    // Redirect user back to the main application page
+    res.redirect('/');
 };

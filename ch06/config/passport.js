@@ -27,5 +27,5 @@ module.exports = function () {
     });
 
     // Load the local authentication strategy configuration
-    require('./strategies/local');
+    require('./strategies/local')();
 };
