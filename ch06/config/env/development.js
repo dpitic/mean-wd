@@ -10,5 +10,12 @@ module.exports = {
     sessionSecret: 'developmentSessionSecret',
 
     // MongoDB connection string
-    db: 'mongodb://localhost/mean-book'
+    db: 'mongodb://localhost/mean-book',
+
+    // Facebook OAuth
+    facebook: {
+        clientID: 'Application_Id',
+        clientSecret: 'Application_Secret',
+        callbackURL: 'http://localhost:3000/oauth/facebook/callback'
+    }
 };

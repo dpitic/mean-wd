@@ -207,6 +207,50 @@ exports.signup = function (req, res, next) {
 };
 
 /*
+ * Controller method used to create a new OAuth user.
+ */
+exports.saveOAuthUserProfile = function (req, profile, done) {
+    // Try finding a user document that was registered using the current OAuth
+    // provider.
+    User.findOne({
+        provider: profile.provider,
+        providerId: profile.providerId
+    }, (err, user) => {
+        // If an error occurs, continue to the next middlware
+        if (err) {
+            return done(err);
+        } else {
+            // If a user could not be found, create a new user, otherwise
+            // continue to the next middleware.
+            if (!user) {
+                // Set a possible username
+                const possibleUsername = profile.username || ((profile.email)
+                        ? profile.email.split('@')[0] : '');
+
+                // Find a unique available username
+                User.findUniqueUsername(possibleUsername, null,
+                    (availableUsername) => {
+                        // Set the available user name
+                        profile.username = availableUsername;
+
+                        // Create the user
+                        const user = new User(profile);
+
+                        // Try saving the new user document
+                        user.save((err) => {
+                            // Continue to the next middleware
+                            return done(err, user);
+                        });
+                    });
+            } else {
+                // Found existing user profile, continue to the next middleware
+                return done(err, user);
+            }
+        }
+    });
+};
+
+/*
  * Controller method for signing out
  */
 exports.signout = function (req, res) {

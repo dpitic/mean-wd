@@ -28,4 +28,6 @@ module.exports = function () {
 
     // Load the local authentication strategy configuration
     require('./strategies/local.js')();
+    // Load the Facebook OAuth authentication strategy configuration
+    require('./strategies/facebook.js')();
 };

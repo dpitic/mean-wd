@@ -43,6 +43,17 @@ module.exports = function (app) {
             failureFlash: true
         }));
 
+    // Define Facebook OAuth route to start user authentication process
+    app.get('/oauth/facebook', passport.authenticate('facebook', {
+        failureRedirect: '/signin'
+    }));
+    // Define Facebook OAuth route to finish authentication process when the
+    // user has linked their Facebook profile.
+    app.get('/oauth/facebook/callback', passport.authenticate('facebook', {
+        failureRedirect: '/signin',
+        successRedirect: '/'
+    }));
+
     // Define user route for signout
     app.get('/signout', users.signout);
 };
