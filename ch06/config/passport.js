@@ -30,4 +30,8 @@ module.exports = function () {
     require('./strategies/local.js')();
     // Load the Facebook OAuth authentication strategy configuration
     require('./strategies/facebook.js')();
+    // Load the Twitter OAuth authentication strategy configuration
+    require('./strategies/twitter.js')();
+    // Load the Google OAuth authentication strategy configuration
+    require('./strategies/google.js')();
 };

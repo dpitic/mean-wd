@@ -1,23 +1,22 @@
 /**
- * Created by dpitic on 16/02/17.
- * Facebook OAuth Passport strategy.
+ * Created by dpitic on 18/02/17.
+ * Google OAuth Passport strategy.
  */
 const passport = require('passport');
 const url = require('url');
-const FacebookStrategy = require('passport-facebook').Strategy;
+const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 const config = require('../config');
 const users = require('../../app/controllers/users.server.controller');
 
 /*
- * Facebook strategy configuration method.
+ * Google strategy configuration method.
  */
 module.exports = function () {
-    // Register the Passport Facebook strategy
-    passport.use(new FacebookStrategy({
-        clientID: config.facebook.clientID,
-        clientSecret: config.facebook.clientSecret,
-        callbackURL: config.facebook.callbackURL,
-        profileFields: ['id', 'name', 'displayName', 'emails'],
+    // Register Passport Google OAuth strategy
+    passport.use(new GoogleStrategy({
+        clientID: config.google.clientID,
+        clientSecret: config.google.clientSecret,
+        callbackURL: config.google.callbackURL,
         passReqToCallback: true
     }, (req, accessToken, refreshToken, profile, done) => {
         // Set the user's provider data and include tokens
@@ -25,14 +24,14 @@ module.exports = function () {
         providerData.accessToken = accessToken;
         providerData.refreshToken = refreshToken;
 
-        // Create the user OAuth profile using the Facebook profile information
+        // Create the user OAuth profile
         const providerUserProfile = {
             firstName: profile.name.givenName,
             lastName: profile.name.familyName,
             fullName: profile.displayName,
             email: profile.emails[0].value,
             username: profile.username,
-            provider: 'facebook',
+            provider: 'google',
             providerId: profile.id,
             providerData: providerData
         };

@@ -54,6 +54,30 @@ module.exports = function (app) {
         successRedirect: '/'
     }));
 
+    // Define Twitter OAuth route
+    app.get('/oauth/twitter', passport.authenticate('twitter', {
+        failureRedirect: '/signin'
+    }));
+    // Define Twitter OAuth route to finish authentication process
+    app.get('/oauth/twitter/callback', passport.authenticate('twitter', {
+        failureRedirect: '/signin',
+        successRedirect: '/'
+    }));
+
+    // Define Google OAuth route
+    app.get('/oauth/google', passport.authenticate('google', {
+        failureRedirect: '/signin',
+        scope: [
+            'https://www.googleapis.com/auth/userinfo.profile',
+            'https://www.googleapis.com/auth/userinfo.email'
+        ]
+    }));
+    // Define Google OAuth route to finish authentication process
+    app.get('/oauth/google/callback', passport.authenticate('google', {
+        failureRedirect: '/signin',
+        successRedirect: '/'
+    }));
+
     // Define user route for signout
     app.get('/signout', users.signout);
 };

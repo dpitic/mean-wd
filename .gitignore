@@ -6,6 +6,9 @@ npm-debug.log*
 # JetBrains IDE configuration directory
 .idea/
 
+# Secret credentials that should not be version controlled
+secrets/
+
 # Runtime data
 pids
 *.pid
@@ -48,4 +51,3 @@ jspm_packages
 
 # Yarn Integrity file
 .yarn-integrity
-
