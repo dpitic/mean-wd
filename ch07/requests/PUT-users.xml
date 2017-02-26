@@ -1,0 +1,46 @@
+<RestClientRequest>
+  <option name="biscuits">
+    <list>
+      <Biscuit>
+        <option name="date" value="-1" />
+        <option name="domain" value="localhost" />
+        <option name="name" value="connect.sid" />
+        <option name="path" value="/" />
+        <option name="value" value="s%3Adpz-j1hFOfOIr1xCPHfTMwaWL1eZww-p.t5WHKCmd7Y40E9r0WQKhq59VhnoumzPnWOjqP0iSA9U" />
+      </Biscuit>
+    </list>
+  </option>
+  <option name="httpMethod" value="PUT" />
+  <option name="urlBase" value="http://localhost:3000" />
+  <option name="urlPath" value="/users/588d6db9b047381f4bd9514e" />
+  <option name="headers">
+    <list>
+      <KeyValuePair>
+        <option name="key" value="Accept" />
+        <option name="value" value="*/*" />
+      </KeyValuePair>
+      <KeyValuePair>
+        <option name="key" value="Cache-Control" />
+        <option name="value" value="no-cache" />
+      </KeyValuePair>
+      <KeyValuePair>
+        <option name="key" value="Content-Type" />
+        <option name="value" value="application/json" />
+      </KeyValuePair>
+    </list>
+  </option>
+  <option name="parameters">
+    <list>
+      <KeyValuePair>
+        <option name="key" value="" />
+        <option name="value" value="" />
+      </KeyValuePair>
+    </list>
+  </option>
+  <option name="parametersEnabled" value="false" />
+  <option name="haveTextToSend" value="true" />
+  <option name="haveFileToSend" value="false" />
+  <option name="isFileUpload" value="false" />
+  <option name="textToSend" value="{   &quot;lastName&quot;: &quot;Updated&quot; }" />
+  <option name="filesToSend" value="" />
+</RestClientRequest>
