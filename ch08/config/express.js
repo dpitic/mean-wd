@@ -71,5 +71,9 @@ module.exports = function () {
     // then it calls the controller's render() method.
     require('../app/routes/index.server.routes')(app);
 
+    // Load the routing file for Article resources
+    require('../app/routes/articles.server.routes');
+
+    // Return the Express application instance
     return app;
 };

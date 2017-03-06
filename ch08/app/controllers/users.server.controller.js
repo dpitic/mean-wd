@@ -279,3 +279,19 @@ exports.signout = function (req, res) {
     // Redirect user back to the main application page
     res.redirect('/');
 };
+
+/*
+ * Express controller middleware used to authorise authenticated operations.
+ */
+exports.requiresLogin = function (req, res, next) {
+    // If a user is not authenticated, send the appropriate error message
+    if (!req.isAuthenticated()) {
+        return res.status(401).send({
+            message: 'User is not logged in'
+        })
+
+    }
+
+    // Call the next middleware
+    next();
+};
