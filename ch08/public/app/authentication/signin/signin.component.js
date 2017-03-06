@@ -40,10 +40,9 @@ System.register(['@angular/core', '@angular/router', '../authentication.service'
                         selector: 'signin',
                         templateUrl: 'app/authentication/signin/signin.template.html'
                     }), 
-                    __metadata('design:paramtypes', [authentication_service_1.AuthenticationService, (typeof (_a = typeof router_1.Router !== 'undefined' && router_1.Router) === 'function' && _a) || Object])
+                    __metadata('design:paramtypes', [authentication_service_1.AuthenticationService, router_1.Router])
                 ], SigninComponent);
                 return SigninComponent;
-                var _a;
             }());
             exports_1("SigninComponent", SigninComponent);
         }
