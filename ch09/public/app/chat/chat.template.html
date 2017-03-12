@@ -1,0 +1,24 @@
+<!--
+Simple form and a list of chat messages.
+-->
+
+<!-- Render the message list -->
+<div *ngFor="let message of messages" [ngSwitch]="message.type">
+    <!-- Distinguish between status messages and regular messages -->
+    <strong *ngSwitchCase="'status'">
+        <span>{{message.created}}</span>
+        <span>{{message.username}}</span>
+        <span>is</span>
+        <span>{{message.text}}</span>
+    </strong>
+    <span *ngSwitchDefault>
+	    <span>{{message.created}}</span>
+	    <span>{{message.username}}:</span>
+	    <span>{{message.text}}</span>
+    </span>
+</div>
+<!-- Form to send messages -->
+<form (ngSubmit)="sendMessage()">
+    <input type="text" name="messageText" [(ngModel)]="messageText">
+    <input type="submit">
+</form>

@@ -5,19 +5,29 @@
  */
 const config = require('./config'); // Express application configuration files
 const path = require('path');
+const http = require('http');
+const socketio = require('socket.io');
 const express = require('express');
 const morgan = require('morgan');   // simple logger middleware
 const compress = require('compression');    // response compression
 const bodyParser = require('body-parser');  // request data handling middleware
 const methodOverride = require('method-override');  // DELETE & PUT legacy
 const session = require('express-session'); // Express session module
+const MongoStore = require('connect-mongo');    // Store session information
 const flash = require('connect-flash');     // Temporary messages module
 const passport = require('passport');   // Passport authentication middleware
+const configureSocket = require('./socketio');  // Socket.io configuration
 
 // Define the Express configuration method
-module.exports = function () {
+module.exports = function (db) {
     // Create a new Express application instance
     const app = express();
+
+    // Create the new HTTP server object to wrap the app object
+    const server = http.createServer(app);
+
+    // Create a new Socket.io server attached to the server object
+    const io = socketio.listen(server);
 
     // process.env is a global variable that provides access to predefined
     // environment variables. The NODE_ENV environment variable is often used
@@ -37,6 +47,11 @@ module.exports = function () {
     app.use(bodyParser.json());
     app.use(methodOverride());
 
+    // Configure the MongoDB session storage
+    const mongoStore = new MongoStore({
+        mongooseConnection: db.connection
+    });
+
     /* Use Express session middleware. This adds a session object to all request
      * objects in the application. This session object enables you to get or
      * set any property you want to use in the current session.
@@ -44,7 +59,8 @@ module.exports = function () {
     app.use(session({
         saveUninitialized: true,
         resave: true,
-        secret: config.sessionSecret
+        secret: config.sessionSecret,
+        store: mongoStore
     }));
 
     // Configure the Express application view folder and template engine to use
@@ -66,14 +82,14 @@ module.exports = function () {
     // Call the routing file to access the Users functionality
     require('../app/routes/users.server.routes.js')(app);
 
+    // Load the routing file for Article resources
+    require('../app/routes/articles.server.routes.js')(app);
+
     // Call the routing file with the application instance. The routing file
     // uses the application instance to create a new routing configuration, and
     // then it calls the controller's render() method.
     require('../app/routes/index.server.routes.js')(app);
 
-    // Load the routing file for Article resources
-    require('../app/routes/articles.server.routes.js')(app);
-
-    // Return the Express application instance
-    return app;
+    // Return the Server instance
+    return server;
 };
