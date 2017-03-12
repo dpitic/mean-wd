@@ -1,0 +1,37 @@
+<RestClientRequest>
+  <option name="biscuits">
+    <list>
+      <Biscuit>
+        <option name="date" value="-1" />
+        <option name="domain" value="localhost" />
+        <option name="name" value="connect.sid" />
+        <option name="path" value="/" />
+        <option name="value" value="s%3AFiBmYMS0fefvavNW331UuPBrv_HRe8Hk.HRNagcApAKab23ncCqv%2FtOp8csHtSo59eEB7MgJQiZo" />
+      </Biscuit>
+    </list>
+  </option>
+  <option name="httpMethod" value="GET" />
+  <option name="urlBase" value="http://localhost:3000" />
+  <option name="urlPath" value="/users" />
+  <option name="headers">
+    <list>
+      <KeyValuePair>
+        <option name="key" value="Accept" />
+        <option name="value" value="*/*" />
+      </KeyValuePair>
+      <KeyValuePair>
+        <option name="key" value="Cache-Control" />
+        <option name="value" value="no-cache" />
+      </KeyValuePair>
+    </list>
+  </option>
+  <option name="parameters">
+    <list />
+  </option>
+  <option name="parametersEnabled" value="true" />
+  <option name="haveTextToSend" value="false" />
+  <option name="haveFileToSend" value="false" />
+  <option name="isFileUpload" value="false" />
+  <option name="textToSend" value="{   &quot;firstName&quot;: &quot;First&quot;,   &quot;lastName&quot;: &quot;Last&quot;,   &quot;email&quot;: &quot;user@example.com&quot;,   &quot;username&quot;: &quot;username&quot;,   &quot;password&quot;: &quot;password&quot; }" />
+  <option name="filesToSend" value="" />
+</RestClientRequest>
