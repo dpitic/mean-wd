@@ -8,13 +8,12 @@
  * This tells Express to execute the function for any HTTP request using the
  * GET verb and which is directed to the root path.
  */
-
+const index = require('../controllers/index.server.controller');
 // This script exports a single function using the module.exports pointer. When
 // client code loads this module, it can call this anonymous function directly
 // using function call operator (). Client code doesn't have to call this
 // method as a property of this module (like the case where exports.property is
 // used).
 module.exports = function (app) {
-    const index = require('../controllers/index.server.controller');
     app.get('/*', index.render);
 };

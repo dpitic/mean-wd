@@ -1,6 +1,5 @@
-System.register(['rxjs/Rx', '@angular/core', '@angular/router', '../authentication/authentication.service'], function(exports_1, context_1) {
+System.register(["rxjs/Rx", "@angular/core", "@angular/router", "../authentication/authentication.service"], function (exports_1, context_1) {
     "use strict";
-    var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -10,11 +9,12 @@ System.register(['rxjs/Rx', '@angular/core', '@angular/router', '../authenticati
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, authentication_service_1;
-    var ChatService;
+    var __moduleName = context_1 && context_1.id;
+    var core_1, router_1, authentication_service_1, ChatService;
     return {
-        setters:[
-            function (_1) {},
+        setters: [
+            function (_1) {
+            },
             function (core_1_1) {
                 core_1 = core_1_1;
             },
@@ -23,8 +23,9 @@ System.register(['rxjs/Rx', '@angular/core', '@angular/router', '../authenticati
             },
             function (authentication_service_1_1) {
                 authentication_service_1 = authentication_service_1_1;
-            }],
-        execute: function() {
+            }
+        ],
+        execute: function () {
             ChatService = (function () {
                 function ChatService(_router, _authenticationService) {
                     this._router = _router;
@@ -62,15 +63,15 @@ System.register(['rxjs/Rx', '@angular/core', '@angular/router', '../authenticati
                     }
                 };
                 ;
-                ChatService = __decorate([
-                    core_1.Injectable(), 
-                    __metadata('design:paramtypes', [(typeof (_a = typeof router_1.Router !== 'undefined' && router_1.Router) === 'function' && _a) || Object, authentication_service_1.AuthenticationService])
-                ], ChatService);
                 return ChatService;
-                var _a;
             }());
+            ChatService = __decorate([
+                core_1.Injectable(),
+                __metadata("design:paramtypes", [router_1.Router,
+                    authentication_service_1.AuthenticationService])
+            ], ChatService);
             exports_1("ChatService", ChatService);
         }
-    }
+    };
 });
 //# sourceMappingURL=chat.service.js.map

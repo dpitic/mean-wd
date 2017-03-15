@@ -1,6 +1,5 @@
-System.register(['rxjs/Rx', '@angular/core', '@angular/http', 'rxjs/Observable'], function(exports_1, context_1) {
+System.register(["rxjs/Rx", "@angular/core", "@angular/http", "rxjs/Observable"], function (exports_1, context_1) {
     "use strict";
-    var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -10,11 +9,12 @@ System.register(['rxjs/Rx', '@angular/core', '@angular/http', 'rxjs/Observable']
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, http_1, Observable_1;
-    var AuthenticationService;
+    var __moduleName = context_1 && context_1.id;
+    var core_1, http_1, Observable_1, AuthenticationService;
     return {
-        setters:[
-            function (_1) {},
+        setters: [
+            function (_1) {
+            },
             function (core_1_1) {
                 core_1 = core_1_1;
             },
@@ -23,8 +23,9 @@ System.register(['rxjs/Rx', '@angular/core', '@angular/http', 'rxjs/Observable']
             },
             function (Observable_1_1) {
                 Observable_1 = Observable_1_1;
-            }],
-        execute: function() {
+            }
+        ],
+        execute: function () {
             AuthenticationService = (function () {
                 function AuthenticationService(http) {
                     this.http = http;
@@ -57,15 +58,14 @@ System.register(['rxjs/Rx', '@angular/core', '@angular/http', 'rxjs/Observable']
                     console.error(error);
                     return Observable_1.Observable.throw(error.json().message || 'Server error');
                 };
-                AuthenticationService = __decorate([
-                    core_1.Injectable(), 
-                    __metadata('design:paramtypes', [(typeof (_a = typeof http_1.Http !== 'undefined' && http_1.Http) === 'function' && _a) || Object])
-                ], AuthenticationService);
                 return AuthenticationService;
-                var _a;
             }());
+            AuthenticationService = __decorate([
+                core_1.Injectable(),
+                __metadata("design:paramtypes", [http_1.Http])
+            ], AuthenticationService);
             exports_1("AuthenticationService", AuthenticationService);
         }
-    }
+    };
 });
 //# sourceMappingURL=authentication.service.js.map
