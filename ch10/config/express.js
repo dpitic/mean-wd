@@ -13,7 +13,8 @@ const compress = require('compression');    // response compression
 const bodyParser = require('body-parser');  // request data handling middleware
 const methodOverride = require('method-override');  // DELETE & PUT legacy
 const session = require('express-session'); // Express session module
-const MongoStore = require('connect-mongo');    // Store session information
+// Store session information
+const MongoStore = require('connect-mongo')(session);
 const flash = require('connect-flash');     // Temporary messages module
 const passport = require('passport');   // Passport authentication middleware
 const configureSocket = require('./socketio');  // Socket.io configuration

@@ -2,7 +2,7 @@
  * Created by dpitic on 15/03/17.
  */
 // Load test dependencies
-const app = require('../../server');
+const app = require('../../server.js');
 const should = require('should');
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
