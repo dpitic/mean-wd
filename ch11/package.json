@@ -6,9 +6,13 @@
     "tsc": "tsc",
     "tsc:w": "tsc -w",
     "app": "node server",
-    "start": "concurrently \"npm run webpack\" \"npm run app\" ",
+    "app:dev": "npm run lint && npm run app",
+    "nodemon": "nodemon -w app -w config -w server.js --exec npm run app:dev",
+    "start": "concurrently \"npm run webpack\" \"npm run nodemon\"",
+    "debug": "node --inspect --debug-brk server.js",
     "postinstall": "typings install",
-    "webpack": "webpack --watch"
+    "webpack": "webpack --watch",
+    "lint": "eslint --ext .js ./config ./app ./*.js"
   },
   "dependencies": {
     "@angular/common": "2.4.10",
@@ -46,16 +50,18 @@
   "devDependencies": {
     "awesome-typescript-loader": "3.1.2",
     "concurrently": "3.4.0",
+    "eslint": "3.10.2",
     "jasmine": "2.5.3",
     "jasmine-core": "2.5.2",
     "karma": "1.5.0",
     "karma-jasmine": "1.1.0",
     "karma-phantomjs-launcher": "1.0.4",
+    "nodemon": "1.11.0",
     "should": "11.2.1",
     "supertest": "3.0.0",
     "traceur": "0.0.111",
     "typescript": "2.2.1",
     "typings": "2.1.0",
-    "webpack": "2.2.1"
+    "webpack": "1.13.3"
   }
 }

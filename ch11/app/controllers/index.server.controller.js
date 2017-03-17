@@ -13,12 +13,12 @@
 // property of this module.
 exports.render = function (req, res) {
     // Output the last visit date to the console
-    if (req.session.lastVisit) {
-        console.log(req.session.lastVisit);
-    }
-
-    // Record the time of the last user request
-    req.session.lastVisit = new Date();
+    // if (req.session.lastVisit) {
+    //     console.log(req.session.lastVisit);
+    // }
+    //
+    // // Record the time of the last user request
+    // req.session.lastVisit = new Date();
 
     // Set the safe user object
     const user = (!req.user) ? null : {
