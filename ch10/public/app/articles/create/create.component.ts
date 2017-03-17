@@ -16,8 +16,7 @@ export class CreateComponent {
     errorMessage: string;
 
     constructor(private _router: Router,
-                private _articlesService: ArticlesService) {
-    }
+                private _articlesService: ArticlesService) {}
 
     // Create a new Article object using ArticlesService
     create() {
