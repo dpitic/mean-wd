@@ -1,0 +1,19 @@
+<!--
+View template provides the user with an interface to view an existing article.
+Contains a set of buttons only visible to the article creator, which will allow
+the creator to delete the article or navigate to the edit route.
+-->
+<section *ngIf="article && article.creator">
+    <h1>{{article.title}}</h1>
+
+    <!-- Only the article creator can edit and delete the article -->
+    <div *ngIf="allowEdit">
+        <a [routerLink]="['/articles', article._id, 'edit']">edit</a>
+        <button (click)="delete()">delete</button>
+    </div>
+    <small>
+        <em>Posted on {{article.created}} by {{article.creator.fullName}}</em>
+    </small>
+
+    <p>{{article.content}}</p>
+</section>
