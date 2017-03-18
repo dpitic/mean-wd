@@ -1,4 +1,4 @@
-System.register(["@angular/core", "@angular/common", "@angular/router", "./home.routes", "./home.component"], function (exports_1, context_1) {
+System.register(["@angular/core", "@angular/common", "@angular/forms", "@angular/router", "./home.routes", "./home.component"], function (exports_1, context_1) {
     "use strict";
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -7,7 +7,7 @@ System.register(["@angular/core", "@angular/common", "@angular/router", "./home.
         return c > 3 && r && Object.defineProperty(target, key, r), r;
     };
     var __moduleName = context_1 && context_1.id;
-    var core_1, common_1, router_1, home_routes_1, home_component_1, HomeModule;
+    var core_1, common_1, forms_1, router_1, home_routes_1, home_component_1, HomeModule;
     return {
         setters: [
             function (core_1_1) {
@@ -15,6 +15,9 @@ System.register(["@angular/core", "@angular/common", "@angular/router", "./home.
             },
             function (common_1_1) {
                 common_1 = common_1_1;
+            },
+            function (forms_1_1) {
+                forms_1 = forms_1_1;
             },
             function (router_1_1) {
                 router_1 = router_1_1;
@@ -36,6 +39,7 @@ System.register(["@angular/core", "@angular/common", "@angular/router", "./home.
                 core_1.NgModule({
                     imports: [
                         common_1.CommonModule,
+                        forms_1.FormsModule,
                         router_1.RouterModule.forChild(home_routes_1.HomeRoutes),
                     ],
                     declarations: [

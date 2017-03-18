@@ -5,10 +5,7 @@ System.register([], function (exports_1, context_1) {
     return {
         setters: [],
         execute: function () {
-            exports_1("AppRoutes", AppRoutes = [{
-                    path: '**',
-                    redirectTo: '/',
-                }]);
+            exports_1("AppRoutes", AppRoutes = []);
         }
     };
 });

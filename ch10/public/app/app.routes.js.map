@@ -1,1 +1,1 @@
-{"version":3,"file":"app.routes.js","sourceRoot":"","sources":["app.routes.ts"],"names":[],"mappings":";;;;;;;YAKA,uBAAa,SAAS,GAAW,CAAC;oBAC9B,IAAI,EAAE,IAAI;oBACV,UAAU,EAAE,GAAG;iBAClB,CAAC,EAAC;QAAA,CAAC"}
+{"version":3,"file":"app.routes.js","sourceRoot":"","sources":["app.routes.ts"],"names":[],"mappings":";;;;;;;YAKA,uBAAa,SAAS,GAAW,EAAE,EAAC;QAAA,CAAC"}

@@ -2,6 +2,7 @@
  * Created by dpitic on 26/02/17.
  */
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
@@ -12,6 +13,7 @@ import { SignupComponent } from './signup/signup.component';
 
 @NgModule({
     imports: [
+        CommonModule,
         FormsModule,
         RouterModule.forChild(AuthenticationRoutes),
     ],
