@@ -91,6 +91,9 @@ module.exports = function (db) {
     // then it calls the controller's render() method.
     require('../app/routes/index.server.routes.js')(app);
 
+    // Load the Socket.io configuration
+    configureSocket(server, io, mongoStore);
+
     // Return the Server instance
     return server;
 };
